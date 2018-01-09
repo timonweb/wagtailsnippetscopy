@@ -26,33 +26,33 @@ You can now "copy" snippets (non-page models) in Wagtail CMS
   
 4. Add SnippetCopyMixin to your Snippet model in order to enable get_copy_url callback() for the model:
 
-    ```
-    from wagtailsnippetscopy.models import SnippetCopyMixin
+  ```
+  from wagtailsnippetscopy.models import SnippetCopyMixin
 
-    @register_snippet
-    class Graph(SnippetCopyMixin, models.Model):
-    ```
+  @register_snippet
+  class Graph(SnippetCopyMixin, models.Model):
+  ```
 
 5. If you wish copy link to automatically appear in modeladmin list you should add SnippetCopyModelAdminMixin to the ModelAdmin class:
 
-    In admin.py:
-    
-    ```python
-    from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
-    from wagtailsnippetscopy.admin import SnippetCopyModelAdminMixin
-    from .models import YourModel
+  In admin.py:
 
-    class YourModelAdmin(SnippetCopyModelAdminMixin, ModelAdmin):
-        model = YourModel
+  ```python
+  from wagtail.contrib.modeladmin.options import ModelAdmin, modeladmin_register
+  from wagtailsnippetscopy.admin import SnippetCopyModelAdminMixin
+  from .models import YourModel
 
-    modeladmin_register(GraphAdmin)
-    ```
+  class YourModelAdmin(SnippetCopyModelAdminMixin, ModelAdmin):
+      model = YourModel
+
+  modeladmin_register(GraphAdmin)
+  ```
 
 6. Copy link follows the following pattern:
 
-    ```
-    /admin/snippets/<app_label>/<model_name>/<object_id>/copy/
-    ```
+  ```
+  /admin/snippets/<app_label>/<model_name>/<object_id>/copy/
+  ```
 
 ## Bugs and suggestions
 
