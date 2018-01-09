@@ -17,16 +17,15 @@ You can now "copy" snippets (non-page models) in Wagtail CMS
 
 3. Register a model (with a title field name) you wish to enable copy functionality for:
 
-  ```
+  ```python
   from wagtailsnippetscopy.registry import snippet_copy_registry
 
   snippet_copy_registry.register(YourModel, 'title_field_name')
-
   ```
   
 4. Add SnippetCopyMixin to your Snippet model in order to enable get_copy_url callback() for the model:
 
-  ```
+  ```python
   from wagtailsnippetscopy.models import SnippetCopyMixin
 
   @register_snippet
