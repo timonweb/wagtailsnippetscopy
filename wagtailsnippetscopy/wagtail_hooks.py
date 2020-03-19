@@ -1,4 +1,4 @@
-from wagtail.wagtailcore import hooks
+from wagtail.core import hooks
 
 from .views import copy
 
@@ -7,5 +7,5 @@ from .views import copy
 def register_admin_urls():
     from django.conf.urls import url
     return [
-        url(r'^snippets/(\w+)/(\w+)/(\d+)/copy/', copy, name='wagtailsnippetscopy_copy'),
+        url(r'^snippets-copy/(\w+)/(\w+)/(\d+)/', copy, name='wagtailsnippetscopy_copy'),
     ]

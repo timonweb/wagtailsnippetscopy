@@ -19,7 +19,7 @@ Alternatively, you can install download or clone this repo and call `pip install
 ```python
 from wagtailsnippetscopy.registry import snippet_copy_registry
 
-snippet_copy_registry.register(YourModel, 'title_field_name')
+snippet_copy_registry.register(YourModel, {})
 ```
 
 4. Add SnippetCopyMixin to your Snippet model in order to enable get_copy_url callback() for the model:
@@ -27,7 +27,6 @@ snippet_copy_registry.register(YourModel, 'title_field_name')
 ```python
 from wagtailsnippetscopy.models import SnippetCopyMixin
 
-@register_snippet
 class Graph(SnippetCopyMixin, models.Model):
 ```
 
@@ -49,7 +48,7 @@ modeladmin_register(GraphAdmin)
 6. Copy link follows the following pattern:
 
 ```
-/admin/snippets/<app_label>/<model_name>/<object_id>/copy/
+/admin/copy-snippet/<app_label>/<model_name>/<object_id>/
 ```
 
 ## Bugs and suggestions

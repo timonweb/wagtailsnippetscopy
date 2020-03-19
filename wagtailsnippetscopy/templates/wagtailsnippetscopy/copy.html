@@ -4,10 +4,10 @@
 {% endblocktrans %}{% endblock %}
 {% block content %}
   {% trans "Copy" as copy_str %}
-  {% include "wagtailadmin/shared/header.html" with title=copy_str subtitle=page.get_admin_display_title icon="doc-empty-inverse" %}
+  {% include "wagtailadmin/shared/header.html" with title=copy_str|add:" "|add:snippet.get_snippet_verbose_name subtitle=page.get_admin_display_title icon="doc-empty-inverse" %}
 
   <div class="nice-padding">
-    <form action="{% url 'wagtailsnippetscopy_copy' app_label model_name snippet.id %}" method="POST" novalidate>
+    <form action="{{ snippet.get_snippet_copy_url }}" method="POST" novalidate>
       {% csrf_token %}
       <input type="hidden" name="next" value="{{ next }}"/>
 
@@ -15,7 +15,7 @@
         {% include "wagtailadmin/shared/field_as_li.html" with field=form.new_title %}
       </ul>
 
-      <input type="submit" value="{% trans 'Copy this snippet' %}" class="button">
+      <input type="submit" value="{% trans 'Copy this' %} {{ snippet.get_snippet_verbose_name }}" class="button">
     </form>
   </div>
 {% endblock %}
