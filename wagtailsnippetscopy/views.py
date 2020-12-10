@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import ugettext as _
 from wagtail.admin import messages
 from wagtail.admin.auth import user_passes_test, user_has_any_page_permission, permission_denied
-from wagtail.admin.views.pages import get_valid_next_url_from_request
+from wagtail.admin.views.pages.utils import get_valid_next_url_from_request
 from wagtail.contrib.modeladmin.helpers import AdminURLHelper
 from wagtail.core import hooks
 from wagtail.snippets.permissions import get_permission_name
