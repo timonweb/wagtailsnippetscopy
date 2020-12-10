@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wagtailsnippetscopy"
-version = "0.2.0"
+version = "0.3.0"
 description = "Copy A Snippet Feature for Wagtail CMS"
 authors = ["Tim Kamanin <tim@timonweb.com>"]
 license = "The MIT License (MIT)"
@@ -22,9 +22,9 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
-django = ">=2.2,<3.1"
-wagtail = ">=2.7,<2.9"
+python = "^3.7"
+django = ">=2.2,<3.2"
+wagtail = ">=2.11"
 
 [build-system]
 requires = ["poetry>=0.12"]
