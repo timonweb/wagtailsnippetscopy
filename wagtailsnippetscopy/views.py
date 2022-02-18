@@ -3,7 +3,12 @@ from django.conf import settings
 from django.contrib.admin.utils import quote
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils.translation import ugettext as _
+
+try:
+    from django.utils.translation import ugettext_lazy as _
+except ImportError:
+    from django.utils.translation import gettext_lazy as _
+
 from wagtail.admin import messages
 from wagtail.admin.auth import user_passes_test, user_has_any_page_permission, permission_denied
 from wagtail.admin.views.pages.utils import get_valid_next_url_from_request
