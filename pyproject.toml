@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wagtailsnippetscopy"
-version = "0.4.1"
+version = "0.4.2"
 description = "Copy A Snippet Feature for Wagtail CMS"
 authors = ["Tim Kamanin <tim@timonweb.com>"]
 license = "The MIT License (MIT)"
