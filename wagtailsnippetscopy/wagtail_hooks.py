@@ -11,5 +11,5 @@ def register_admin_urls():
         from django.urls import re_path as url
 
     return [
-        url(r'^snippets-copy/(\w+)/(\w+)/(\d+)/', copy, name='wagtailsnippetscopy_copy'),
+        url(r'^snippets-copy/(\w+)/(\w+)/(\w+)/', copy, name='wagtailsnippetscopy_copy'),
     ]

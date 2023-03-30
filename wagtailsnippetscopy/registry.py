@@ -2,6 +2,7 @@ from wagtailsnippetscopy.forms import CopyForm
 
 default_meta = {
     'title_field_name': 'title',
+    'title_field_label': 'New title',
     'copy_form_class': CopyForm
 }
 

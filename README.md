@@ -26,9 +26,33 @@ snippet_copy_registry.register(YourModel, {})
 
 ```python
 from wagtailsnippetscopy.models import SnippetCopyMixin
+from wagtail.snippets.models import register_snippet
 
+@register_snippet
 class Graph(SnippetCopyMixin, models.Model):
 ```
+
+In order for the `Copy` Button to appear in your Snippet list actions automatically, add the following to your app `wagtail_hooks.py`
+
+```python
+from wagtail import hooks
+from wagtail.snippets import widgets as wagtailsnippets_widgets
+
+@hooks.register('register_snippet_listing_buttons')
+def snippet_listing_buttons(snippet, user, next_url=None):
+    if hasattr(snippet, "get_snippet_copy_url"):
+        url = snippet.get_snippet_copy_url()
+        yield wagtailsnippets_widgets.SnippetListingButton(
+            "Copy",
+            url,
+            priority=20
+        )
+
+```
+
+Now if you go to your snippet list, you will see a new `Copy` button alongside `Edit` and `Delete`
+
+
 
 5. If you wish copy link to automatically appear in modeladmin list you should add SnippetCopyModelAdminMixin to the ModelAdmin class:
 

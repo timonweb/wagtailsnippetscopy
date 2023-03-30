@@ -10,10 +10,12 @@ except ImportError:
 class CopyFormBase(forms.Form):
     snippet = None
     title_field_name = None
+    title_field_label = None
 
     def __init__(self, *args, **kwargs):
         self.snippet = kwargs.pop('snippet')
         self.title_field_name = kwargs.pop('title_field_name')
+        self.title_field_label = kwargs.pop('title_field_label')
         super().__init__(*args, **kwargs)
 
     def copy(self) -> models.Model:
@@ -21,11 +23,14 @@ class CopyFormBase(forms.Form):
 
 
 class CopyForm(CopyFormBase):
-    new_title = forms.CharField(label=_("New title"))
+    new_title = forms.CharField()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['new_title'].initial = getattr(self.snippet, self.title_field_name)
+
+        if self.title_field_label:
+            self.fields['new_title'].label = _(self.title_field_label)
 
     def copy(self):
         new_snippet = self.snippet
