@@ -13,8 +13,7 @@ class SnippetCopyMixin:
             self._meta.app_label,
             self._meta.model_name,
             pk
-        )
-                       )
+        ))
 
     def get_snippet_verbose_name(self):
         return self._meta.verbose_name.title()

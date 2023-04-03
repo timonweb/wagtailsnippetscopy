@@ -1,5 +1,6 @@
 from django import forms
 from django.db import models
+from modelcluster.models import get_all_child_relations
 
 try:
     from django.utils.translation import ugettext_lazy as _
@@ -33,9 +34,28 @@ class CopyForm(CopyFormBase):
             self.fields['new_title'].label = _(self.title_field_label)
 
     def copy(self):
+        # get all child relations
+        relations = get_all_child_relations(self.snippet)
+        relations_dict = {}
+        for relation in relations:
+            related_name = relation.related_name
+            rels = getattr(self.snippet, related_name).all()
+            relations_dict[related_name] = rels
+
         new_snippet = self.snippet
         new_snippet.pk = None
         new_snippet.id = None
+
+        for key, values in relations_dict.items():
+            new_values = []
+            for value in values:
+                new_val = value
+                new_val.pk = None
+                new_val.id = None
+                new_values.append(new_val)
+            setattr(new_snippet, key, new_values)
+
         setattr(new_snippet, self.title_field_name, self.cleaned_data.get('new_title'))
+
         new_snippet.save()
         return new_snippet
