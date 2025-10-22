@@ -1,9 +1,11 @@
 from django.utils.safestring import mark_safe
-from wagtail.contrib.modeladmin.options import ModelAdmin
 
+try:
+    from wagtail.contrib.modeladmin.options import ModelAdmin
+except ImportError:
+    from wagtail_modeladmin.options import ModelAdmin
 
 def short(*args, **kwargs):
-    print(kwargs)
     return 'SHORT'
 
 
